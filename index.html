@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yaobaisheep的博客</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            line-height: 1.6;
+        }
+        .post {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        .post h2 {
+            color: #333;
+        }
+        .post p {
+            color: #666;
+        }
+        .comments {
+            margin-top: 20px;
+        }
+        .comment {
+            margin-bottom: 10px;
+        }
+        .comment p {
+            color: #333;
+        }
+        .like-button {
+            cursor: pointer;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>欢迎来到Yaobaisheep的博客</h1>
+    </header>
+    <div class="container">
+        <h1>你好，欢迎来到我的博客！</h1>
+        <p>在这里，我将分享我的想法、经验和故事。希望你能喜欢并从中受益。</p>
+
+        <div class="post">
+            <h2>第一篇文章</h2>
+            <p>这是我的第一篇博客文章。在这篇文章中，我将介绍我自己以及我创建这个博客的原因。</p>
+            <span class="like-button" onclick="likePost(this)">👍 点赞 <span class="like-count">0</span></span>
+            <div class="comments">
+                <h3>评论</h3>
+                <div class="comment-list"></div>
+                <textarea id="comment-input-1" rows="3" style="width: 100%;"></textarea><br>
+                <button onclick="addComment(1)">提交评论</button>
+            </div>
+        </div>
+
+        <div class="post">
+            <h2>第二篇文章</h2>
+            <p>在这篇文章中，我将分享一些我在编程方面的经验和技巧，希望对你有所帮助。</p>
+            <span class="like-button" onclick="likePost(this)">👍 点赞 <span class="like-count">0</span></span>
+            <div class="comments">
+                <h3>评论</h3>
+                <div class="comment-list"></div>
+                <textarea id="comment-input-2" rows="3" style="width: 100%;"></textarea><br>
+                <button onclick="addComment(2)">提交评论</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function likePost(element) {
+            const likeCount = element.querySelector('.like-count');
+            likeCount.innerText = parseInt(likeCount.innerText) + 1;
+        }
+
+        function addComment(postId) {
+            const commentInput = document.getElementById(`comment-input-${postId}`);
+            const commentText = commentInput.value.trim();
+            if (commentText) {
+                const commentList = document.querySelector(`.post:nth-of-type(${postId}) .comment-list`);
+                const commentElement = document.createElement('div');
+                commentElement.classList.add('comment');
+                commentElement.innerHTML = `<p>${commentText}</p>`;
+                commentList.appendChild(commentElement);
+                commentInput.value = '';
+            }
+        }
+    </script>
+</body>
+</html>
